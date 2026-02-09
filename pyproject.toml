@@ -1,0 +1,17 @@
+[project]
+name = "ession"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "librosa>=0.11.0",
+    "matplotlib>=3.10.8",
+    "numpy>=2.3.5",
+    "pedalboard>=0.9.22",
+    "scipy>=1.17.0",
+    "soundfile>=0.13.1",
+]
+
+[tool.setuptools.packages.find]
+include = ["ession*"]
