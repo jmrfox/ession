@@ -3,7 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Self
 
-import matplotlib.pyplot as plt
 import numpy as np
 import soundfile as sf
 
@@ -37,6 +36,12 @@ class Audio:
         bit_depth: int = 16,
     ) -> Self:
         return cls(data, sample_rate, bit_depth)
+
+    @classmethod
+    def read(cls, path: str | Path) -> Self:
+        """Read an audio file into an Audio object."""
+        data, sr = sf.read(str(path), dtype="float64")
+        return cls(data, sr)
 
     @classmethod
     def silence(
@@ -144,8 +149,10 @@ class Audio:
     def plot(
         self,
         title: str = "Waveform",
-        ax: plt.Axes | None = None,
-    ) -> plt.Figure:
+        ax: object | None = None,
+    ) -> object:
+        import matplotlib.pyplot as plt
+
         t = np.arange(len(self)) / self.sample_rate
         show = ax is None
         if ax is None:
